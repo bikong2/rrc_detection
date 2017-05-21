@@ -1,7 +1,7 @@
 %%%convert the kitti type labels to voc type labels
 currentFolder = pwd;
 addpath(genpath(currentFolder));
-root_dir = '/your/path/to/KITTI/';
+root_dir = '/home/lixihua/datas/kitti/';
 img_type = '.png';
 img_dir = [root_dir 'training/image_2/'];
 txt_dir = [root_dir 'training/label_2car/'];

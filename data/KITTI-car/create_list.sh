@@ -1,6 +1,6 @@
 #!/bin/bash
 
-root_dir="$HOME/data/KITTI/"   #your path to kitti dataset
+root_dir="$HOME/datas/kitti/"   #your path to kitti dataset
 bash_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 label_dir="label_2car"                #path to labels of car
 name="image_2"
