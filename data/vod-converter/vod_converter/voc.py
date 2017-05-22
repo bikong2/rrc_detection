@@ -133,7 +133,7 @@ class VOCEgestor(Egestor):
             xml_root = ET.Element('annotation')
             add_text_node(xml_root, 'filename', "%s.%s" % (image_id, src_extension))
             add_text_node(xml_root, 'folder', 'VOC2012')
-            add_text_node(xml_root, 'segmented', int(segmentations_dir_created))
+            #add_text_node(xml_root, 'segmented', int(segmentations_dir_created))
 
             add_sub_node(xml_root, 'size', {
                 'depth': 3,
