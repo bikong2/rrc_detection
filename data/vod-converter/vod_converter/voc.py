@@ -111,27 +111,27 @@ class VOCEgestor(Egestor):
         annotations_path = "%s/VOC2012/Annotations" % root
         segmentations_path = "%s/VOC2012/SegmentationObject" % root
         segmentations_dir_created = False
-
         for to_create in [image_sets_path, images_path, annotations_path]:
-            os.makedirs(to_create, exist_ok=True)
+            if not os.path.exists(to_create):
+                os.makedirs(to_create)
 
         for image_detection in image_detections:
             image = image_detection['image']
             image_id = image['id']
             src_extension = image['path'].split('.')[-1]
-            shutil.copyfile(image['path'], "%s/%d.%s" % (images_path, image_id, src_extension))
+            shutil.copyfile(image['path'], "%s/%s.%s" % (images_path, image_id, src_extension))
 
             with open("%s/trainval.txt" % image_sets_path, 'a') as out_image_index_file:
-                out_image_index_file.write('%d\n' % image_id)
+                out_image_index_file.write('%s\n' % image_id)
 
             if image['segmented_path'] is not None:
                 if not segmentations_dir_created:
                     os.makedirs(segmentations_path)
                     segmentations_dir_created = True
-                shutil.copyfile(image['segmented_path'], "%s/%d.png" % (segmentations_path, image_id))
+                shutil.copyfile(image['segmented_path'], "%s/%s.png" % (segmentations_path, image_id))
 
             xml_root = ET.Element('annotation')
-            add_text_node(xml_root, 'filename', "%d.%s" % (image_id, src_extension))
+            add_text_node(xml_root, 'filename', "%s.%s" % (image_id, src_extension))
             add_text_node(xml_root, 'folder', 'VOC2012')
             add_text_node(xml_root, 'segmented', int(segmentations_dir_created))
 
@@ -161,7 +161,7 @@ class VOCEgestor(Egestor):
                     'ymax': detection['bottom'] + 1
                 })
 
-            ET.ElementTree(xml_root).write("%s/%d.xml" % (annotations_path, image_id))
+            ET.ElementTree(xml_root).write("%s/%s.xml" % (annotations_path, image_id))
 
 
 def add_sub_node(node, name, kvs):
