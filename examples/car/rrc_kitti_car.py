@@ -115,7 +115,8 @@ odd=[0,0,0,0,0]
 rolling_rate = 0.075
 # Solver parameters.
 # Defining which GPUs to use.
-gpus = "0,1,2,3"
+#gpus = "0,1,2,3"
+gpus = "0"
 gpulist = gpus.split(",")
 num_gpus = len(gpulist)
 

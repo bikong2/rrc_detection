@@ -7,7 +7,7 @@ import ImageDraw
 # Make sure that the work directory is caffe_root
 caffe_root = './' 
 # modify img_dir to your path of testing images of kitti
-img_dir = '/your/path/to/KITTI/testing/image_2/'
+img_dir = '/home/lixihua/datas/kitti/testing/image_2/'
 import os
 os.chdir(caffe_root)
 import sys
